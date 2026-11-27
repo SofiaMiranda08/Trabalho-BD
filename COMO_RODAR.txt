@@ -1,0 +1,28 @@
+COMO RODAR O PAINEL (VS CODE)
+=============================
+
+1. Descompacte o zip e abra a pasta "olho-na-cota-ceap-2025" no VS Code
+   (File > Open Folder).
+
+2. Abra o terminal: Terminal > New Terminal (ou Ctrl + ').
+
+3. Instale as bibliotecas (só na primeira vez):
+       pip install -r requirements.txt
+   Se "pip" não funcionar, use:  py -m pip install -r requirements.txt
+
+4. Rode o painel:
+       streamlit run app.py
+   Se "streamlit" não for reconhecido, use:  py -m streamlit run app.py
+
+5. O navegador abre sozinho em http://localhost:8501
+   Para parar, clique no terminal e aperte Ctrl + C.
+
+PLANO B (sem instalar nada)
+---------------------------
+Abra o arquivo dashboard/index.html com dois cliques. É a mesma versão do painel em HTML.
+
+OPCIONAL: BANCO MYSQL
+---------------------
+1. Rode sql/modelo_mysql_ceap_2025.sql no MySQL Workbench (botão do raio).
+2. Troque a senha dentro de src/carregar_mysql.py.
+3. No terminal:  python src/carregar_mysql.py

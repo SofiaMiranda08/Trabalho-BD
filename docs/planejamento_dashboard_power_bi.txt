@@ -1,0 +1,53 @@
+DASHBOARD POWER BI — CEAP 2025
+
+PÚBLICO-ALVO
+Gestores, analistas e pessoas interessadas em acompanhar a distribuição das despesas parlamentares.
+
+OBJETIVO CENTRAL
+Entender como os valores líquidos da CEAP se distribuem ao longo dos meses e entre categorias, parlamentares e fornecedores.
+
+PERGUNTAS DE NEGÓCIO (3 a 5)
+1. Qual é o total de despesas líquidas registradas em 2025?
+2. Como os valores líquidos evoluem mês a mês?
+3. Quais categorias concentram os maiores valores?
+4. Quais parlamentares e fornecedores apresentam os maiores totais?
+5. Qual é o volume de registros sinalizados como possíveis outliers?
+
+KPIs NO TOPO
+- Total de Despesas Líquidas: R$ 215,086,686.41
+- Quantidade de Lançamentos: 171,059
+- Média por Lançamento: R$ 1,257.38
+- Total de Glosas: R$ 1,012,889.88
+- Registros sinalizados como outliers: 31,183
+
+GRÁFICOS
+- Linha ou colunas: total líquido por mês (eixo: mes_referencia).
+- Barras horizontais: total líquido por categoria.
+- Barras: total líquido por parlamentar (Top 10).
+- Tabela: parlamentar, categoria, fornecedor, data, valor bruto, glosa e valor líquido.
+
+FILTROS
+Ano, mês, UF, partido, categoria, parlamentar e fornecedor.
+
+AÇÕES VINCULADAS AOS INDICADORES
+- Se uma categoria ou mês apresentar valor elevado, filtrar o período/categoria e detalhar os lançamentos.
+- Se houver muitos outliers, abrir a tabela de detalhes e conferir documento, categoria e valor.
+- Se o percentual de glosa mudar, comparar valor bruto e líquido e verificar os registros correspondentes.
+
+REGRA DOS 5 SEGUNDOS
+O usuário deve identificar rapidamente o total líquido, a quantidade de lançamentos e a tendência mensal. Por isso, mantenha os KPIs no topo, tendência e comparações no meio, e detalhes na parte inferior.
+
+DADOS E ATUALIZAÇÃO
+A base analisada é a extração anual de 2025. Exibir no rodapé: "Fonte: Câmara dos Deputados — Dados Abertos | Base: CEAP 2025 | Última carga: preencher com a data em que o arquivo foi importado".
+Não afirmar atualização em tempo real: trata-se de um arquivo CSV baixado.
+
+OBSERVAÇÃO SOBRE OUTLIERS
+A sinalização usa o método IQR na coluna valor líquido. Outlier é um valor estatisticamente distante do conjunto, não uma prova de erro ou irregularidade. Os registros não foram excluídos.
+
+ORDEM DE MONTAGEM
+1. Importar o modelo_mysql_ceap_2025.sql no MySQL Workbench.
+2. Importar CEAP_2025_tratada.csv para a tabela stg_despesas_ceap.
+3. Executar novamente no SQL as instruções da seção 4 e 5 (INSERT das dimensões e da fato), caso tenha executado o arquivo inteiro antes da importação, rode esses INSERTs depois da carga.
+4. Conectar o Power BI ao banco ceap_2025 e selecionar fato_despesa e dimensões.
+5. Criar as medidas do arquivo medidas_DAX_power_bi.txt.
+6. Montar os visuais na ordem indicada acima.

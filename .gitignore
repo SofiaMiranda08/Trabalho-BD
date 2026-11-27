@@ -1,0 +1,8 @@
+# Dado bruto é volumoso: baixar da fonte oficial
+data/raw/*.csv
+# Credenciais e ambiente
+.env
+.venv/
+venv/
+__pycache__/
+.streamlit/secrets.toml

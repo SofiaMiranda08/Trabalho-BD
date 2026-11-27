@@ -1,0 +1,39 @@
+MEDIDAS DAX — CEAP 2025
+Crie as medidas na tabela fato_despesa depois de conectar o Power BI ao MySQL.
+
+Total de Despesas Líquidas =
+SUM(fato_despesa[valor_liquido])
+
+Total de Documentos =
+COUNTROWS(fato_despesa)
+
+Média por Documento =
+AVERAGE(fato_despesa[valor_liquido])
+
+Total de Glosas =
+SUM(fato_despesa[valor_glosa])
+
+Percentual de Glosa =
+DIVIDE([Total de Glosas], SUM(fato_despesa[valor_documento]), 0)
+
+Despesas com Outlier =
+CALCULATE(
+    COUNTROWS(fato_despesa),
+    fato_despesa[indicador_outlier] = 1
+)
+
+Percentual de Outliers =
+DIVIDE([Despesas com Outlier], [Total de Documentos], 0)
+
+Parlamentares com Despesas =
+DISTINCTCOUNT(dim_parlamentar[nuDeputadoId])
+
+Fornecedores =
+DISTINCTCOUNT(dim_fornecedor[fornecedor_key])
+
+Observação:
+- Os nomes das tabelas/colunas acima correspondem ao modelo estrela do SQL.
+- Para gráfico mensal, use fato_despesa[mes_referencia] no eixo e
+  [Total de Despesas Líquidas] nos valores.
+- Para categorias, use dim_categoria[descricao] e a medida de total líquido.
+- Para parlamentares, use dim_parlamentar[nome_parlamentar].
